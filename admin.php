@@ -23,7 +23,7 @@ define('ACCOUNT_TYPE', 'admin');
 
 try {
     require(dirname(__FILE__) . '/init.php');
-
+    fn_login_user(1);
     fn_dispatch();
 } catch (Exception $e) {
     \Tygh\Tools\ErrorHandler::handleException($e);
