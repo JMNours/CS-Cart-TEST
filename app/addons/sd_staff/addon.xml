@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<addon scheme="3.0">
+    <id>sd_staff</id>
+    <version>1.0</version>
+    <priority>4294967294</priority>
+    <position>0</position>
+    <auto_install>MULTIVENDOR,ULTIMATE</auto_install>
+    <default_language>en</default_language>
+
+    <queries>
+        <item>
+            CREATE TABLE `?:staff` (
+                `id` int(11) unsigned NOT NULL auto_increment,
+                `first_name` char(50) NOT NULL,
+                `last_name` char(50) NOT NULL,
+                `function` char(50) NOT NULL default '',
+                `email` nvarchar(255) NOT NULL default '',
+                `internal_description` text(2000) NOT NULL default '',
+                PRIMARY KEY  (`id`)
+            ) Engine=MyISAM DEFAULT CHARSET UTF8;
+        </item>
+        
+        <item for="uninstall">DROP TABLE IF EXISTS ?:staff;</item>
+    </queries>
+
+</addon>
+
+
+
