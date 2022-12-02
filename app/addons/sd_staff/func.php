@@ -11,7 +11,7 @@ function fn_get_staff($params = array(), $items_per_page = 0) {
 
     $params = array_merge($default_params, $params);
 
-    $condition = $limit = $join ='';
+    $condition = $limit = $join = '';
 
     $sorting = db_sort($params, [], 'id', 'asc');
 
@@ -48,16 +48,20 @@ function fn_get_staff($params = array(), $items_per_page = 0) {
         $params['total_items'] = db_get_field("SELECT COUNT(*) FROM ?:staff $join WHERE 1 $condition");
         $limit = db_paginate($params['page'], $params['items_per_page'], $params['total_items']);
     }
-    
-     $staffs = db_get_hash_array(
-        "SELECT ?p FROM ?:staff " .
-        $join .
-        "WHERE 1 ?p ?p ?p",
-        'id', implode(', ', $fields), $condition, $sorting, $limit
+
+    $staffs = db_get_hash_array(
+            "SELECT ?p FROM ?:staff " .
+            $join .
+            "WHERE 1 ?p ?p ?p",
+            'id', implode(', ', $fields), $condition, $sorting, $limit
     );
 
     if (!empty($params['item_ids'])) {
         $staffs = fn_sort_by_ids($staffs, explode(',', $params['item_ids']), 'id');
+    }
+
+    foreach ($staffs as $id => &$staff) {
+        $staff['name'] = $staff['first_name'] . ' ' . $staff['last_name'];
     }
 
     return array($staffs, $params);

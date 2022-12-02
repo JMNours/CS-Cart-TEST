@@ -2,6 +2,12 @@
 
 use Tygh\Registry;
 
+if($mode == "test")
+{
+    list($staff,$params) = fn_get_staff();
+    var_dump($staff);
+}
+
 if ($mode == "manage") {
 
     $params = $_REQUEST;

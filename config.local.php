@@ -20,7 +20,8 @@ if (!defined('BOOTSTRAP')) { die('Access denied'); }
 
 // Log everything, but do not display
 error_reporting(E_ALL);
-ini_set('display_errors', 0);
+ini_set('display_errors', 'On');
+define('DEVELOPMENT',true);
 
 if (!defined('CONSOLE')) {
     // Set maximum time limit for script execution.
