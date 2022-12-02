@@ -67,14 +67,71 @@ function fn_get_staff($params = array(), $items_per_page = 0) {
     return array($staffs, $params);
 }
 
-function fn_staffs_update_staff($data, $staff_id = '', $lang_code = DESCR_SL) {
-    SecurityHelper::sanitizeObjectData('staff', $data);
+//function fn_update_staff($data, $staff_id = '', $lang_code = DESCR_SL) {
+//    SecurityHelper::sanitizeObjectData('staff', $data);
+//
+//    if (!empty($staff_id)) {
+//        db_query("UPDATE ?:staff SET ?u WHERE id = ?i", $data, $staff_id);
+//    } else {
+//        $staff_id = $data['$staff_id'] = db_query("REPLACE INTO ?:staff ?e", $data);
+//    }
+//
+//    return $staff_id;
+//}
+
+function fn_update_staff($staff_data, $staff_id='') {
+    $default_params = [
+        'staff_id' => $staff_id
+    ];
+    
+    $staff_data = array_merge($default_params, $staff_data);
+
+    SecurityHelper::sanitizeObjectData('staff', $staff_data);
+
+    array_walk($staff_data, 'fn_trim_helper');
 
     if (!empty($staff_id)) {
-        db_query("UPDATE ?:staff SET ?u WHERE id = ?i", $data, $staff_id);
+        $current_staff_data = db_get_row(
+                'SELECT *'
+                . ' FROM ?:staff WHERE id = ?i',
+                $staff_id
+        );
+
+        if (empty($current_staff_data)) {
+            fn_set_notification('E', __('error'), __('object_not_found', array('[object]' => __('sd_staff'))), '', '404');
+
+            return false;
+        }
+
+        $action = 'update';
     } else {
-        $staff_id = $data['$staff_id'] = db_query("REPLACE INTO ?:staff ?e", $data);
+        $current_staff_data = array();
+
+        $action = 'add';
     }
 
+    if (!empty($staff_id)) {
+
+        db_query('UPDATE ?:staff SET ?u WHERE id = ?i', $staff_data, $staff_id);
+
+        fn_log_event('sd_staff', 'update', array(
+            'staff_id' => $staff_id,
+        ));
+    } else {
+
+        $staff_id = db_query("INSERT INTO ?:staff ?e", $staff_data);
+
+        fn_log_event('staff', 'create', array(
+            'staff_id' => $staff_id,
+        ));
+    }
+    $staff_data['staff_id'] = $staff_id;
+
     return $staff_id;
+}
+
+function fn_get_staff_info($staff_id)
+{
+    $staff_info = db_get_row("SELECT ?:staff.* FROM ?:staff WHERE id = ?i", $staff_id);
+    return $staff_info;
 }
