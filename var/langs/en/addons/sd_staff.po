@@ -16,12 +16,11 @@ msgctxt "Languages::sd_staff.id"
 msgid "Id"
 msgstr "Id"
 
-
 msgctxt "Languages::sd_staff.name"
 msgid "Staff"
 msgstr "Staff"
 
-msgctxt "Languages::sd_staff.frist_name"
+msgctxt "Languages::sd_staff.first_name"
 msgid "First name"
 msgstr "First name"
 
