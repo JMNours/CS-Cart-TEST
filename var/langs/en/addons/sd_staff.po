@@ -11,3 +11,32 @@ msgstr "Staff"
 msgctxt "Addons::description::sd_staff"
 msgid "Addon adds the ability to manage staff"
 msgstr "Addon adds the ability to manage staff"
+
+msgctxt "Languages::sd_staff.id"
+msgid "Id"
+msgstr "Id"
+
+
+msgctxt "Languages::sd_staff.name"
+msgid "Staff"
+msgstr "Staff"
+
+msgctxt "Languages::sd_staff.frist_name"
+msgid "First name"
+msgstr "First name"
+
+msgctxt "Languages::sd_staff.last_name"
+msgid "Last name"
+msgstr "Last name"
+
+msgctxt "Languages::sd_staff.function"
+msgid "Function"
+msgstr "Function"
+
+msgctxt "Languages::sd_staff.email"
+msgid "Email"
+msgstr "Email"
+
+msgctxt "Languages::sd_staff.internal_description"
+msgid "Internal description"
+msgstr "Internal description"
