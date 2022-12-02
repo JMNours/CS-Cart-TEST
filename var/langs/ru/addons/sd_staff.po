@@ -20,7 +20,7 @@ msgctxt "Languages::sd_staff.name"
 msgid "Staff"
 msgstr "Сотрудники"
 
-msgctxt "Languages::sd_staff.frist_name"
+msgctxt "Languages::sd_staff.first_name"
 msgid "First name"
 msgstr "Имя"
 
