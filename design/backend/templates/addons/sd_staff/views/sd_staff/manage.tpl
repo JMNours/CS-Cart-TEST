@@ -1,5 +1,5 @@
 {capture name="mainbox"}
-    {$title = __('sd_staff.name')}
+    {$title = __('sd_staff')}
 
     {$has_permission=fn_check_permissions("sd_staff", "update", "admin", "POST")}
 

@@ -30,4 +30,4 @@
 
 {include file="common/pagination.tpl"}
 
-{capture name="mainbox_title"}{__("sd_staff.name")}{/capture}
+{capture name="mainbox_title"}{__("sd_staff")}{/capture}
