@@ -25,8 +25,8 @@ msgid "Id"
 msgstr "Id"
 
 msgctxt "Languages::sd_staff.name"
-msgid "Staff"
-msgstr "Staff"
+msgid "Name"
+msgstr "Name"
 
 msgctxt "Languages::sd_staff.first_name"
 msgid "First name"
