@@ -64,6 +64,14 @@
 
     {$redirect_url = "sd_staff.manage`"}
     {capture name="buttons"}
+        {capture name="tools_list"}
+            {if !$hide_inputs}
+                <li>{btn type="list" text=__("delete") class="cm-confirm" href="staff.delete?id=`$id`&redirect_url=`$redirect_url`" method="POST"}</li>
+            {/if}
+        {/capture}
+        {if $id && $smarty.capture.tools_list|trim !==""}
+            {dropdown content=$smarty.capture.tools_list}
+        {/if}
         <div class="btn-group btn-hover dropleft">
             {if $id}
                 {include file="buttons/save_cancel.tpl" but_meta="dropdown-toggle" but_role="submit-link" but_name="dispatch[sd_staff.`$runtime.mode`]" but_target_form="staff_form" save=$id}
